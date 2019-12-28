@@ -32,6 +32,6 @@ public class RoverTest {
         Rover rover=new Rover();
         rover.land(6,6,"E",zone);
         rover.move();
-        assertEquals("67E",rover.getDot());
+        assertEquals("76E",rover.getDot());
     }
 }

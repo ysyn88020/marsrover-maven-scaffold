@@ -27,5 +27,8 @@ public class Rover {
     }
 
     public void move() {
+        if("E".equals(direction)){
+            this.x=x+1;
+        }
     }
 }
