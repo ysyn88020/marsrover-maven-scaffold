@@ -18,7 +18,7 @@ public class Rover {
     }
 
     public String getDot() {
-        return null;
+        return String.valueOf(x)+String.valueOf(y)+direction;
 
     }
 }
