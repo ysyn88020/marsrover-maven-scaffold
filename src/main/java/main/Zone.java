@@ -33,9 +33,10 @@ public class Zone {
     private int x;
     private int y;
     private String direction;
+
     public Zone(int x, int y, String direction) {
-        this.x=x;
-        this.y=y;
-        this.direction=direction;
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
     }
 }

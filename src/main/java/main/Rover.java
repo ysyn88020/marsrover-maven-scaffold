@@ -49,83 +49,83 @@ public class Rover {
     }
 
     public void land(int x, int y, String direction, Zone zone) {
-        this.x=x;
-        this.y=y;
-        this.direction=direction;
-        this.zone=zone;
-        if(x>zone.getX()||y>zone.getY())
-        {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+        this.zone = zone;
+        if (x > zone.getX() || y > zone.getY()) {
             throw new RuntimeException("探测车越界了");
         }
     }
 
     public String getDot() {
-        return String.valueOf(x)+String.valueOf(y)+direction;
+        return String.valueOf(x) + String.valueOf(y) + direction;
 
     }
 
     public void move() {
-        if("E".equals(direction)){
-            this.x=x+1;
-        }else if("W".equals(direction)){
-            this.x=x-1;
-        }else if("S".equals(direction)){
-            this.y=y-1;
-        }else if("N".equals(direction)){
-            this.y=y+1;
+        if ("E".equals(direction)) {
+            this.x = x + 1;
+        } else if ("W".equals(direction)) {
+            this.x = x - 1;
+        } else if ("S".equals(direction)) {
+            this.y = y - 1;
+        } else if ("N".equals(direction)) {
+            this.y = y + 1;
         }
-        if(x>zone.getX()||y>zone.getY()){
+        if (x > zone.getX() || y > zone.getY()) {
             throw new RuntimeException("跑出界了");
         }
     }
 
     public void turn(String param) {
-        if("L".equals(param)){
-            if("E".equals(direction)){
-                this.direction=NORTH;
-            }else if("W".equals(direction)){
-                this.direction=SOUTH;
-            }else if("S".equals(direction)){
-                this.direction=EAST;
-            }else if("N".equals(direction)){
-                this.direction=WEST;
+        if ("L".equals(param)) {
+            if ("E".equals(direction)) {
+                this.direction = NORTH;
+            } else if ("W".equals(direction)) {
+                this.direction = SOUTH;
+            } else if ("S".equals(direction)) {
+                this.direction = EAST;
+            } else if ("N".equals(direction)) {
+                this.direction = WEST;
             }
-        }else{
-            if("W".equals(direction)){
-                this.direction=NORTH;
-            }else if("E".equals(direction)){
-                this.direction=SOUTH;
-            }else if("N".equals(direction)){
-                this.direction=EAST;
-            }else if("S".equals(direction)){
-                this.direction=WEST;
+        } else {
+            if ("W".equals(direction)) {
+                this.direction = NORTH;
+            } else if ("E".equals(direction)) {
+                this.direction = SOUTH;
+            } else if ("N".equals(direction)) {
+                this.direction = EAST;
+            } else if ("S".equals(direction)) {
+                this.direction = WEST;
             }
         }
 
 
     }
+
     public void turnLeft() {
-        if("E".equals(direction)){
-            this.direction=NORTH;
-        }else if("W".equals(direction)){
-            this.direction=SOUTH;
-        }else if("S".equals(direction)){
-            this.direction=EAST;
-        }else if("N".equals(direction)){
-            this.direction=WEST;
+        if ("E".equals(direction)) {
+            this.direction = NORTH;
+        } else if ("W".equals(direction)) {
+            this.direction = SOUTH;
+        } else if ("S".equals(direction)) {
+            this.direction = EAST;
+        } else if ("N".equals(direction)) {
+            this.direction = WEST;
         }
 
     }
 
     public void turnRight() {
-        if("W".equals(direction)){
-            this.direction=NORTH;
-        }else if("E".equals(direction)){
-            this.direction=SOUTH;
-        }else if("N".equals(direction)){
-            this.direction=EAST;
-        }else if("S".equals(direction)){
-            this.direction=WEST;
+        if ("W".equals(direction)) {
+            this.direction = NORTH;
+        } else if ("E".equals(direction)) {
+            this.direction = SOUTH;
+        } else if ("N".equals(direction)) {
+            this.direction = EAST;
+        } else if ("S".equals(direction)) {
+            this.direction = WEST;
         }
 
     }
