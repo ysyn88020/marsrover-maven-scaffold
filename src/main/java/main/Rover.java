@@ -41,6 +41,9 @@ public class Rover {
         }else if("N".equals(direction)){
             this.y=y+1;
         }
+        if(x>zone.getX()||y>zone.getY()){
+            throw new RuntimeException("跑出界了");
+        }
     }
 
     public void turnLeft() {
