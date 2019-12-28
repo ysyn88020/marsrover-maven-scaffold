@@ -26,4 +26,12 @@ public class RoverTest {
           Rover rover=new Rover();
           assertThrows(RuntimeException.class,()->{rover.land(11,10,"E",zone);});
     }
+    @Test
+    public void should_Move() {
+        Zone zone=new Zone(10,10,"E");
+        Rover rover=new Rover();
+        rover.land(6,6,"E",zone);
+        rover.move();
+        assertEquals("67E",rover.getDot());
+    }
 }

@@ -25,4 +25,7 @@ public class Rover {
         return String.valueOf(x)+String.valueOf(y)+direction;
 
     }
+
+    public void move() {
+    }
 }
