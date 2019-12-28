@@ -3,6 +3,9 @@ import main.Rover;
 import main.Zone;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.stubbing.answers.ThrowsException;
+import sun.rmi.runtime.NewThreadAction;
+
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,7 +52,7 @@ public class RoverTest {
         Zone zone=new Zone(10,10, Rover.EAST);
         Rover rover=new Rover();
         rover.land(6,6, Rover.EAST,zone);
-        rover.turnLeft();
+        rover.turn("L");
         assertEquals("66N",rover.getDot());
     }
     @Test
@@ -70,13 +73,11 @@ public class RoverTest {
     @Test
     public void should_oder() {
         Zone zone=new Zone(10,10, Rover.EAST);
-        String command="L:M";
-
+        String command="R:M";
         Rover rover=new Rover();
         rover.land(6,6, Rover.EAST,zone);
         ComandController comandController=new ComandController();
-        comandController.excute(command,rover);
-        assertEquals("67N",rover.getDot());
+        assertEquals("65S",comandController.excute(command,rover));
     }
 
 }

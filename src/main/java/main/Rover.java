@@ -15,7 +15,40 @@ public class Rover {
     private int y;
     private String direction;
     private Zone zone;
-    public void land(int x, int y, String direction,Zone zone) {
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
+
+    public void land(int x, int y, String direction, Zone zone) {
         this.x=x;
         this.y=y;
         this.direction=direction;
@@ -46,6 +79,31 @@ public class Rover {
         }
     }
 
+    public void turn(String param) {
+        if("L".equals(param)){
+            if("E".equals(direction)){
+                this.direction=NORTH;
+            }else if("W".equals(direction)){
+                this.direction=SOUTH;
+            }else if("S".equals(direction)){
+                this.direction=EAST;
+            }else if("N".equals(direction)){
+                this.direction=WEST;
+            }
+        }else{
+            if("W".equals(direction)){
+                this.direction=NORTH;
+            }else if("E".equals(direction)){
+                this.direction=SOUTH;
+            }else if("N".equals(direction)){
+                this.direction=EAST;
+            }else if("S".equals(direction)){
+                this.direction=WEST;
+            }
+        }
+
+
+    }
     public void turnLeft() {
         if("E".equals(direction)){
             this.direction=NORTH;
@@ -60,7 +118,7 @@ public class Rover {
     }
 
     public void turnRight() {
-      if("W".equals(direction)){
+        if("W".equals(direction)){
             this.direction=NORTH;
         }else if("E".equals(direction)){
             this.direction=SOUTH;
@@ -70,5 +128,14 @@ public class Rover {
             this.direction=WEST;
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "x=" + x +
+                ", y=" + y +
+                ", direction='" + direction + '\'' +
+                '}';
     }
 }
