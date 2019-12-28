@@ -29,6 +29,12 @@ public class Rover {
     public void move() {
         if("E".equals(direction)){
             this.x=x+1;
+        }else if("W".equals(direction)){
+            this.x=x-1;
+        }else if("S".equals(direction)){
+            this.y=y-1;
+        }else if("N".equals(direction)){
+            this.y=y+1;
         }
     }
 }
