@@ -55,4 +55,17 @@ public class Rover {
         }
 
     }
+
+    public void turnRight() {
+      /*  if("W".equals(direction)){
+            this.direction=NORTH;
+        }else if("E".equals(direction)){
+            this.direction=SOUTH;
+        }else if("N".equals(direction)){
+            this.direction=EAST;
+        }else if("S".equals(direction)){
+            this.direction=WEST;
+        }*/
+
+    }
 }

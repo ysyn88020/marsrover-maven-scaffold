@@ -45,10 +45,18 @@ public class RoverTest {
     }
     @Test
     public void should_TurnLeft() {
-        Zone zone=new Zone(10,10, Rover.SOUTH);
+        Zone zone=new Zone(10,10, Rover.EAST);
         Rover rover=new Rover();
-        rover.land(6,6, Rover.SOUTH,zone);
+        rover.land(6,6, Rover.EAST,zone);
         rover.turnLeft();
-        assertEquals("66E",rover.getDot());
+        assertEquals("66N",rover.getDot());
+    }
+    @Test
+    public void should_TurnRight() {
+        Zone zone=new Zone(10,10, Rover.EAST);
+        Rover rover=new Rover();
+        rover.land(6,6, Rover.EAST,zone);
+        rover.turnRight();
+        assertEquals("66S",rover.getDot());
     }
 }
