@@ -59,4 +59,11 @@ public class RoverTest {
         rover.turnRight();
         assertEquals("66S",rover.getDot());
     }
+    @Test
+    public void should_Move_Out_Bound() {
+        Zone zone=new Zone(10,10, Rover.EAST);
+        Rover rover=new Rover();
+        rover.land(10,6, Rover.EAST,zone);
+        assertThrows(RuntimeException.class,()->{ rover.move();;});
+    }
 }
