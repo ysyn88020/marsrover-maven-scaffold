@@ -1,11 +1,9 @@
 import main.ComandController;
+import main.Dot;
 import main.Rover;
 import main.Zone;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.stubbing.answers.ThrowsException;
-import sun.rmi.runtime.NewThreadAction;
-
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,67 +15,70 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public class RoverTest {
 
+    private static Zone zone;
+
+    //初始化区域
+    @BeforeEach
+    void init() {
+        zone = new Zone(10, 10, Rover.EAST);
+    }
+
     @Test
     public void should_load_the_rover_land() {
-          Zone zone=new Zone(10,10, Rover.EAST);
-          Rover rover=new Rover();
-          rover.land(6,6, Rover.EAST,zone);
-          String dot=rover.getDot();
-          assertEquals(dot,"66E");
+        Dot dot = new Dot(6, 6, Rover.EAST);
+        Rover rover = new Rover(dot, zone);
+        rover.land(dot, zone);
+        assertEquals(rover.getDot().toString(), "66E");
     }
+
     @Test
-    public void should_load_the_rover_notOutBound() {
-          Zone zone=new Zone(10,10, Rover.EAST);
-          Rover rover=new Rover();
-          assertThrows(RuntimeException.class,()->{rover.land(11,10, Rover.EAST,zone);});
+    public void should_load_the_rover_land_outbound() {
+        Dot dot = new Dot(11, 10, Rover.EAST);
+        Rover rover = new Rover(dot, zone);
+        assertThrows(RuntimeException.class, () -> {
+            rover.land(dot, zone);
+        });
     }
+
     @Test
-    public void should_Move() {
-        Zone zone=new Zone(10,10, Rover.EAST);
-        Rover rover=new Rover();
-        rover.land(6,6, Rover.EAST,zone);
+    public void should_load_the_rover_move() {
+        Dot dot = new Dot(6, 6, Rover.EAST);
+        Rover rover = new Rover(dot, zone);
+        rover.land(dot, zone);
         rover.move();
-        assertEquals("76E",rover.getDot());
+        assertEquals("76E", rover.getDot().toString());
     }
+
     @Test
-    public void should_MoveW() {
-        Zone zone=new Zone(10,10, Rover.SOUTH);
-        Rover rover=new Rover();
-        rover.land(6,6, Rover.SOUTH,zone);
-        rover.move();
-        assertEquals("65S",rover.getDot());
-    }
-    @Test
-    public void should_TurnLeft() {
-        Zone zone=new Zone(10,10, Rover.EAST);
-        Rover rover=new Rover();
-        rover.land(6,6, Rover.EAST,zone);
-        rover.turn("L");
-        assertEquals("66N",rover.getDot());
-    }
-    @Test
-    public void should_TurnRight() {
-        Zone zone=new Zone(10,10, Rover.EAST);
-        Rover rover=new Rover();
-        rover.land(6,6, Rover.EAST,zone);
+    public void should_load_the_rover_turn() {
+        Dot dot = new Dot(6, 6, Rover.EAST);
+        Rover rover = new Rover(dot, zone);
+        rover.land(dot, zone);
+        rover.turnLeft();
+        assertEquals("66N", rover.getDot().toString());
         rover.turnRight();
-        assertEquals("66S",rover.getDot());
+        assertEquals("66E", rover.getDot().toString());
     }
+
     @Test
-    public void should_Move_Out_Bound() {
-        Zone zone=new Zone(10,10, Rover.EAST);
-        Rover rover=new Rover();
-        rover.land(10,6, Rover.EAST,zone);
-        assertThrows(RuntimeException.class,()->{ rover.move();;});
+    public void should_load_the_rover_move_outbound() {
+        Dot dot = new Dot(10, 6, Rover.EAST);
+        Rover rover = new Rover(dot, zone);
+        rover.land(dot, zone);
+        assertThrows(RuntimeException.class, () -> {
+            rover.move();
+            ;
+        });
     }
+
     @Test
-    public void should_oder() {
-        Zone zone=new Zone(10,10, Rover.EAST);
-        String command="R:M";
-        Rover rover=new Rover();
-        rover.land(6,6, Rover.EAST,zone);
-        ComandController comandController=new ComandController();
-        assertEquals("65S",comandController.excute(command,rover));
+    public void should_load_the_rover_excute_command() {
+        String command = "R:M";
+        Dot dot = new Dot(6, 6, Rover.EAST);
+        Rover rover = new Rover(dot, zone);
+        rover.land(dot, zone);
+        ComandController comandController = new ComandController();
+        assertEquals("65S", comandController.excute(command, rover));
     }
 
 }

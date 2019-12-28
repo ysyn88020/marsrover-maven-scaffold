@@ -11,33 +11,17 @@ public class Rover {
     public static final String WEST = "W";
     public static final String NORTH = "N";
     public static final String SOUTH = "S";
-    private int x;
-    private int y;
-    private String direction;
+
     private Zone zone;
+    private Dot dot;
 
-    public int getX() {
-        return x;
+    public Rover(Dot dot, Zone zone) {
+        this.dot = dot;
+        this.zone = zone;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
+    public void setDot(Dot dot) {
+        this.dot = dot;
     }
 
     public Zone getZone() {
@@ -48,86 +32,84 @@ public class Rover {
         this.zone = zone;
     }
 
-    public void land(int x, int y, String direction, Zone zone) {
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-        this.zone = zone;
-        if (x > zone.getX() || y > zone.getY()) {
+    /**
+     * 构造函数
+     *
+     * @param dot
+     * @param zone
+     */
+    public void land(Dot dot, Zone zone) {
+        if (dot.getX() > zone.getX() || dot.getY() > zone.getY()) {
             throw new RuntimeException("探测车越界了");
         }
     }
 
+    public void action() {
+
+    }
+
+    /**
+     * 获取当前位置
+     *
+     * @return
+     */
     public String getDot() {
-        return String.valueOf(x) + String.valueOf(y) + direction;
+        return dot.toString();
 
     }
 
+    /**
+     * 向前移动
+     */
     public void move() {
-        if ("E".equals(direction)) {
-            this.x = x + 1;
-        } else if ("W".equals(direction)) {
-            this.x = x - 1;
-        } else if ("S".equals(direction)) {
-            this.y = y - 1;
-        } else if ("N".equals(direction)) {
-            this.y = y + 1;
+        if ("E".equals(dot.getDirection())) {
+            dot.setX(dot.getX() + 1);
+        } else if ("W".equals(dot.getDirection())) {
+            dot.setX(dot.getX() - 1);
+        } else if ("S".equals(dot.getDirection())) {
+            dot.setY(dot.getY() - 1);
+        } else if ("N".equals(dot.getDirection())) {
+            dot.setY(dot.getY() - 1);
         }
-        if (x > zone.getX() || y > zone.getY()) {
-            throw new RuntimeException("跑出界了");
+        if (dot.getX() > zone.getX() || dot.getY() > zone.getY()) {
+            throw new RuntimeException("探测机器人越界");
         }
     }
 
-    public void turn(String param) {
-        if ("L".equals(param)) {
-            if ("E".equals(direction)) {
-                this.direction = NORTH;
-            } else if ("W".equals(direction)) {
-                this.direction = SOUTH;
-            } else if ("S".equals(direction)) {
-                this.direction = EAST;
-            } else if ("N".equals(direction)) {
-                this.direction = WEST;
-            }
-        } else {
-            if ("W".equals(direction)) {
-                this.direction = NORTH;
-            } else if ("E".equals(direction)) {
-                this.direction = SOUTH;
-            } else if ("N".equals(direction)) {
-                this.direction = EAST;
-            } else if ("S".equals(direction)) {
-                this.direction = WEST;
-            }
-        }
-
-
-    }
-
+    /**
+     * 左转动
+     * *@param
+     */
     public void turnLeft() {
-        if ("E".equals(direction)) {
-            this.direction = NORTH;
-        } else if ("W".equals(direction)) {
-            this.direction = SOUTH;
-        } else if ("S".equals(direction)) {
-            this.direction = EAST;
-        } else if ("N".equals(direction)) {
-            this.direction = WEST;
+        if ("E".equals(dot.getDirection())) {
+            dot.setDirection(NORTH);
+        } else if ("W".equals(dot.getDirection())) {
+            dot.setDirection(SOUTH);
+        } else if ("S".equals(dot.getDirection())) {
+            dot.setDirection(WEST);
+        } else if ("N".equals(dot.getDirection())) {
+            dot.setDirection(EAST);
         }
-
     }
 
+    /**
+     * 右转
+     */
     public void turnRight() {
-        if ("W".equals(direction)) {
-            this.direction = NORTH;
-        } else if ("E".equals(direction)) {
-            this.direction = SOUTH;
-        } else if ("N".equals(direction)) {
-            this.direction = EAST;
-        } else if ("S".equals(direction)) {
-            this.direction = WEST;
-        }
 
+        if ("E".equals(dot.getDirection())) {
+            dot.setDirection(SOUTH);
+        } else if ("W".equals(dot.getDirection())) {
+            dot.setDirection(NORTH);
+        } else if ("S".equals(dot.getDirection())) {
+            dot.setDirection(WEST);
+        } else if ("N".equals(dot.getDirection())) {
+            dot.setDirection(EAST);
+        }
     }
+
 
 }
+
+
+

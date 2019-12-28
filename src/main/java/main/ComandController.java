@@ -9,6 +9,7 @@ public class ComandController {
     public String excute(String command, Rover rover) {
 
         String[] a = command.split(":");
+
         for (String b : a) {
             if ("M".equals(b)) {
                 rover.move();
@@ -18,6 +19,6 @@ public class ComandController {
                 rover.turnRight();
             }
         }
-        return String.valueOf(rover.getX()) + String.valueOf(rover.getY()) + rover.getDirection();
+        return rover.getDot();
     }
 }
