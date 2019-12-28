@@ -6,6 +6,11 @@ package main;
  * @date 2019/12/28 15:33
  */
 public class Rover {
+
+    public static final String EAST = "E";
+    public static final String WEST = "W";
+    public static final String NORTH = "N";
+    public static final String SOUTH = "S";
     private int x;
     private int y;
     private String direction;
@@ -36,5 +41,9 @@ public class Rover {
         }else if("N".equals(direction)){
             this.y=y+1;
         }
+    }
+
+    public void turnLeft() {
+
     }
 }

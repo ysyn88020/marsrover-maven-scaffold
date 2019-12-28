@@ -12,34 +12,43 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @date 2019/12/28 15:27
  */
 public class RoverTest {
+
     @Test
     public void should_load_the_rover_land() {
-          Zone zone=new Zone(10,10,"E");
+          Zone zone=new Zone(10,10, Rover.EAST);
           Rover rover=new Rover();
-          rover.land(6,6,"E",zone);
+          rover.land(6,6, Rover.EAST,zone);
           String dot=rover.getDot();
           assertEquals(dot,"66E");
     }
     @Test
     public void should_load_the_rover_notOutBound() {
-          Zone zone=new Zone(10,10,"E");
+          Zone zone=new Zone(10,10, Rover.EAST);
           Rover rover=new Rover();
-          assertThrows(RuntimeException.class,()->{rover.land(11,10,"E",zone);});
+          assertThrows(RuntimeException.class,()->{rover.land(11,10, Rover.EAST,zone);});
     }
     @Test
     public void should_Move() {
-        Zone zone=new Zone(10,10,"E");
+        Zone zone=new Zone(10,10, Rover.EAST);
         Rover rover=new Rover();
-        rover.land(6,6,"E",zone);
+        rover.land(6,6, Rover.EAST,zone);
         rover.move();
         assertEquals("76E",rover.getDot());
     }
     @Test
     public void should_MoveW() {
-        Zone zone=new Zone(10,10,"W");
+        Zone zone=new Zone(10,10, Rover.SOUTH);
         Rover rover=new Rover();
-        rover.land(6,6,"W",zone);
+        rover.land(6,6, Rover.SOUTH,zone);
         rover.move();
-        assertEquals("56W",rover.getDot());
+        assertEquals("65S",rover.getDot());
+    }
+    @Test
+    public void should_TurnLeft() {
+        Zone zone=new Zone(10,10, Rover.SOUTH);
+        Rover rover=new Rover();
+        rover.land(6,6, Rover.SOUTH,zone);
+        rover.turnLeft();
+        assertEquals("66E",rover.getDot());
     }
 }
