@@ -57,7 +57,7 @@ public class Rover {
     }
 
     public void turnRight() {
-      /*  if("W".equals(direction)){
+      if("W".equals(direction)){
             this.direction=NORTH;
         }else if("E".equals(direction)){
             this.direction=SOUTH;
@@ -65,7 +65,7 @@ public class Rover {
             this.direction=EAST;
         }else if("S".equals(direction)){
             this.direction=WEST;
-        }*/
+        }
 
     }
 }
