@@ -34,4 +34,12 @@ public class RoverTest {
         rover.move();
         assertEquals("76E",rover.getDot());
     }
+    @Test
+    public void should_MoveW() {
+        Zone zone=new Zone(10,10,"W");
+        Rover rover=new Rover();
+        rover.land(6,6,"W",zone);
+        rover.move();
+        assertEquals("56W",rover.getDot());
+    }
 }
