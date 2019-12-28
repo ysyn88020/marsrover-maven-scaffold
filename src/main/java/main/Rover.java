@@ -15,6 +15,10 @@ public class Rover {
         this.y=y;
         this.direction=direction;
         this.zone=zone;
+        if(x>zone.getX()||y>zone.getY())
+        {
+            throw new RuntimeException("探测车越界了");
+        }
     }
 
     public String getDot() {
