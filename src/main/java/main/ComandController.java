@@ -8,7 +8,7 @@ package main;
 public class ComandController {
     public String excute(String command, Rover rover) {
 
-        String a[] = command.split(":");
+        String[] a = command.split(":");
         for (String b : a) {
             if ("M".equals(b)) {
                 rover.move();
