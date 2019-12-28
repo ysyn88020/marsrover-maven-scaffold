@@ -1,3 +1,4 @@
+import main.ComandController;
 import main.Rover;
 import main.Zone;
 import org.junit.jupiter.api.Test;
@@ -66,4 +67,16 @@ public class RoverTest {
         rover.land(10,6, Rover.EAST,zone);
         assertThrows(RuntimeException.class,()->{ rover.move();;});
     }
+    @Test
+    public void should_oder() {
+        Zone zone=new Zone(10,10, Rover.EAST);
+        String command="L:M";
+
+        Rover rover=new Rover();
+        rover.land(6,6, Rover.EAST,zone);
+        ComandController comandController=new ComandController();
+        comandController.excute(command,rover);
+        assertEquals("67N",rover.getDot());
+    }
+
 }
