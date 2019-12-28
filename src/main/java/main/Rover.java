@@ -130,12 +130,4 @@ public class Rover {
 
     }
 
-    @Override
-    public String toString() {
-        return "Rover{" +
-                "x=" + x +
-                ", y=" + y +
-                ", direction='" + direction + '\'' +
-                '}';
-    }
 }
